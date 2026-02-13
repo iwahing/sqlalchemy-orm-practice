@@ -11,7 +11,7 @@ def get_students_with_no_enrollments(session: Session):
         .outerjoin(Enrollment)
         .where(Enrollment.id.is_(None))
     )
-    
+
     return session.scalars(statement).all()
 
 def get_student_with_failing_grade(session: Session):
@@ -20,21 +20,21 @@ def get_student_with_failing_grade(session: Session):
         .outerjoin(Enrollment)
         .where(Enrollment.grade > 75)
     )
-    
+
     return session.scalars(statement).all()
 
-def get_student_enrolled_courses(session: Session, course_id):
+def get_student_enrolled_courses(session: Session, student_id):
     statement = (
         select(Student)
         .join(Enrollment)
-        .where(Enrollment.course_id == course_id)
+        .where(Student.id == student_id)
     )
-    
-    return session.scalars(statement).all()
 
-def get_student_enrolled_courses(session: Session, course_id):
-    statement = (
-        select(Student)
-    )
-    
-    return session.scalars(statement).all()
+    return session.scalars(statement).first()
+
+# def get_student_enrolled_courses(session: Session, course_id):
+#     statement = (
+#         select(Student)
+#     )
+
+#     return session.scalars(statement).all()
