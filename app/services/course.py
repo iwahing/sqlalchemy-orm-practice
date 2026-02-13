@@ -1,7 +1,6 @@
 from sqlalchemy import select
-from sqlalchemy.orm import selectinload
+from sqlalchemy.orm import Session, selectinload
 from app.models import Course, Enrollment
-from sqlalchemy.orm import Session
 
 def get_courses(session: Session):
     return session.scalars(select(Course)).all()

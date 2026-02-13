@@ -31,3 +31,10 @@ def get_student_enrolled_courses(session: Session, course_id):
     )
     
     return session.scalars(statement).all()
+
+def get_student_enrolled_courses(session: Session, course_id):
+    statement = (
+        select(Student)
+    )
+    
+    return session.scalars(statement).all()
